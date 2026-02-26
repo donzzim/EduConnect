@@ -9,6 +9,7 @@ class Grade extends Model
 {
     protected $table = 'notas';
     protected $guarded = ['id'];
+
     public function aluno(): BelongsTo
     {
         return $this->belongsTo(Student::class);
@@ -19,10 +20,6 @@ class Grade extends Model
         return $this->belongsTo(Subject::class);
     }
 
-    /**
-     * Calcula o total automaticamente antes de salvar.
-     * Útil para o seu algoritmo de Machine Learning ler o campo 'Total' consolidado.
-     */
     protected static function booted()
     {
         static::saving(function ($grade) {

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->date('birth_date');
-            $table->string('enrollment',10)
+            $table->string('enrollment', 10)
                 ->unique()
                 ->default('202600000');
             $table->string('registration_number')
@@ -24,7 +24,6 @@ return new class extends Migration
             $table->json('address')
                 ->nullable();
             $table->enum('gender', ['male', 'female', 'other']);
-            $table->enum('position', ['admin', 'teacher', 'student']);
             $table->string('email')
                 ->unique()
                 ->nullable();

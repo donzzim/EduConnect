@@ -16,6 +16,10 @@ return new class extends Migration
             $table->foreignIdFor(\App\Models\User::class)
                 ->constrained()
                 ->cascadeOnDelete();
+            $table->integer('workload')
+                ->comment('In hours');
+            $table->double('salary')
+                ->comment('R$');
             $table->enum('position', ['coordinator', 'principal']);
             $table->timestamps();
         });
