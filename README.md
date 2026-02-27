@@ -3,11 +3,11 @@
 O **EduConnect** é uma plataforma de gestão para Ensino Médio que utiliza o ecossistema Laravel para conectar Adminstração, Professores e Alunos, com foco futuro em predição de dados via Machine Learning.
 
 ## 🚀 Tecnologias Utilizadas
-* **Framework:** [Laravel 11](https://laravel.com)
-* **Painel Administrativo:** [Filament V3](https://filamentphp.com)
+* **Framework:** [Laravel 12](https://laravel.com)
+* **Painel Administrativo:** [Filament V5](https://filamentphp.com)
 * **Autenticação:** [Laravel Breeze](https://laravel.com/docs/11.x/starter-kits) (Blade/Tailwind)
 * **Frontend:** [Tailwind CSS](https://tailwindcss.com) & [Vite](https://vitejs.dev)
-* **Banco de Dados:** MySQL / PostgreSQL / SQLite
+* **Banco de Dados:** MySQL 
 
 ---
 
