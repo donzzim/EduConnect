@@ -4,12 +4,20 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('app.home');
+    return view('pages.home');
 })->name('home');
 
 Route::get('/saibamais', function () {
-    return view('app.about');
+    return view('pages.about');
 })->name('about');
+
+Route::get('/student', function () {
+    return view('pages.student.index');
+})->name('student.index');
+
+Route::get('/teacher', function () {
+    return view('pages.teacher.index');
+})->name('teacher.index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -21,4 +29,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -96,7 +96,8 @@
                     <h3 class="text-xl font-bold text-slate-800 mb-2">Professor</h3>
                     <p class="text-slate-500 mb-6 text-sm">Lançamento de notas, frequências e planos de aula para suas
                         turmas atribuídas.</p>
-                    <a href="/admin" class="text-emerald-600 font-semibold flex items-center hover:underline">Acessar <i
+                    <a href="{{ route('teacher.index') }}"
+                        class="text-emerald-600 font-semibold flex items-center hover:underline">Acessar <i
                             class="fa-solid fa-arrow-right ml-2 text-xs"></i></a>
                 </div>
 
@@ -108,7 +109,8 @@
                     <h3 class="text-xl font-bold text-slate-800 mb-2">Aluno</h3>
                     <p class="text-slate-500 mb-6 text-sm">Acesso a notas, materiais de estudo e acompanhamento do
                         desempenho acadêmico.</p>
-                    <a href="#" class="text-amber-600 font-semibold flex items-center hover:underline">Acessar <i
+                    <a href="{{ route('student.index') }}"
+                        class="text-amber-600 font-semibold flex items-center hover:underline">Acessar <i
                             class="fa-solid fa-arrow-right ml-2 text-xs"></i></a>
                 </div>
             </div>
