@@ -20,7 +20,7 @@ return new class extends Migration
                 ->nullable()
                 ->constrained()
                 ->nullOnDelete();
-            $table->enum('status', ['enrolled', 'passed','failed'])
+            $table->enum('status', ['enrolled', 'passed', 'failed'])
                 ->default('enrolled');
             $table->string('guardian')
                 ->nullable();
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('alunos');
+        Schema::dropIfExists('students');
     }
 };

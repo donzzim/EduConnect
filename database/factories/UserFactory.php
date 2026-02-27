@@ -206,6 +206,7 @@ class UserFactory extends Factory
             "29118760",
             "29118822"
         ];
+
         $cepPicked = fake()->randomElement($ceps);
 
         $response = Http::get("https://viacep.com.br/ws/{$cepPicked}/json/")->json();

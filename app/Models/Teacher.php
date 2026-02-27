@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Teacher extends Model
 {
+    use HasFactory;
+    public $timestamps = false;
     protected $table = 'teachers';
     protected $guarded = [
         'id',
@@ -28,7 +31,8 @@ class Teacher extends Model
             ->withTimestamps();
     }
 
-    public function disciplinas(): BelongsToMany {
+    public function disciplinas(): BelongsToMany
+    {
         return $this->belongsToMany(Subject::class, 'classroom_subjects');
     }
 }

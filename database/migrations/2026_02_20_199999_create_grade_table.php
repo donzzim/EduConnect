@@ -34,9 +34,7 @@ return new class extends Migration
             $table->decimal('T6', 5, 2)->nullable();
             $table->decimal('A6', 5, 2)->nullable();
             $table->decimal('FT', 5, 2)->nullable();
-            $table->decimal('FA', 5, 2)->nullable();
             $table->decimal('Total', 5, 2)->nullable();
-            $table->timestamps();
         });
     }
 
@@ -45,6 +43,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('notas');
+        Schema::dropIfExists('grades');
     }
 };

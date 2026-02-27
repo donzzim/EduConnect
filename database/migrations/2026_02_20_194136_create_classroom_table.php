@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('classrooms', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-                $table->enum('shift', ['morning', 'afternoon', 'night']);
+            $table->enum('shift', ['morning', 'afternoon', 'night']);
             $table->year('school_year');
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('turmas');
+        Schema::dropIfExists('classrooms');
     }
 };
