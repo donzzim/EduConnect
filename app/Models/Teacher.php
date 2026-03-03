@@ -31,7 +31,7 @@ class Teacher extends Model
             ->withTimestamps();
     }
 
-    public function disciplinas(): BelongsToMany
+    public function subjects(): BelongsToMany
     {
         return $this->belongsToMany(Subject::class, 'classroom_subjects');
     }

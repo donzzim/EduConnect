@@ -27,7 +27,7 @@ class Student extends Model
         return $this->belongsTo(Classroom::class);
     }
 
-    public function notas(): HasMany
+    public function grades(): HasMany
     {
         return $this->hasMany(Grade::class);
     }

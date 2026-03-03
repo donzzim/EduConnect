@@ -41,7 +41,6 @@ class DatabaseSeeder extends Seeder
 
         $subjects = Subject::factory(10)->create();
         $classrooms = Classroom::factory(5)->create();
-
         $teachers = Teacher::factory(8)->create();
 
         $classrooms->each(function ($classroom) use ($subjects) {

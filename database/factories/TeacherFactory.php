@@ -30,24 +30,25 @@ class TeacherFactory extends Factory
             "Livre-Docência"
         ];
 
-        $subjects = [
-            "Português",
-            "Matemática",
-            "História",
-            "Geografia",
-            "Biologia",
-            "Física",
-            "Química",
-            "Filosofia",
-            "Sociologia",
-            "Inglês",
-            "Educação Física",
-            "Artes"
+        $colleges = [
+            "Universidade de São Paulo",
+            "Universidade Estadual de Campinas",
+            "Universidade Federal do Rio de Janeiro",
+            "Universidade Federal de Minas Gerais",
+            "Universidade de Brasília",
+            "Universidade Federal do Rio Grande do Sul",
+            "Universidade Federal de Santa Catarina",
+            "Universidade Federal de Pernambuco",
+            "Pontifícia Universidade Católica de São Paulo",
+            "Fundação Getulio Vargas",
+            "Universidade Presbiteriana Mackenzie",
+            "Instituto Tecnológico de Aeronáutica"
         ];
 
         return [
             'user_id' => User::factory(),
-            'specialization' => fake()->randomElement($specializations) . 'em' . fake()->randomElement($subjects),
+            'specialization' => fake()->randomElement($specializations),
+            'specialization_college' => fake()->randomElement($colleges),
             'workload' => fake()->numberBetween(20, 40),
             'salary' => fake()->randomFloat(2, 2500, 8000),
         ];

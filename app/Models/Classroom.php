@@ -13,12 +13,12 @@ class Classroom extends Model
     public $timestamps = false;
     protected $table = 'classrooms';
     protected $guarded = ['id'];
-    public function professores(): BelongsToMany
+    public function teachers(): BelongsToMany
     {
         return $this->belongsToMany(Teacher::class, 'classroom_subjects')
             ->withPivot('subject_id');
     }
-    public function alunos(): HasMany
+    public function students(): HasMany
     {
         return $this->hasMany(Student::class);
     }

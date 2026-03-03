@@ -15,11 +15,11 @@ class Subject extends Model
     protected $guarded = [
         'id'
     ];
-    public function notas(): HasMany
+    public function grades(): HasMany
     {
         return $this->hasMany(Grade::class);
     }
-    public function professores(): BelongsToMany
+    public function teachers(): BelongsToMany
     {
         return $this->belongsToMany(Teacher::class, 'classroom_subjects');
     }

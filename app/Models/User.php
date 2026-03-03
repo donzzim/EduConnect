@@ -60,4 +60,14 @@ class User extends Authenticatable
         'name' => 'John Doe'
         // Nome vem 'John Doe' como default
     ];
+
+    public function getGenderLabelAttribute(): string
+    {
+        return match ($this->gender) {
+            'male' => 'Masculino',
+            'female' => 'Feminino',
+            'other' => 'Outro',
+            default => 'Não informado',
+        };
+    }
 }

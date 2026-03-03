@@ -13,11 +13,11 @@ Route::get('/saibamais', function () {
 
 Route::get('/student', function () {
     return view('pages.student.index');
-})->name('student.index');
+})->middleware(['auth', 'verified'])->name('student.index');
 
 Route::get('/teacher', function () {
     return view('pages.teacher.index');
-})->name('teacher.index');
+})->middleware(['auth', 'verified'])->name('teacher.index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

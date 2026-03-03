@@ -13,12 +13,12 @@ class Grade extends Model
     protected $table = 'grades';
     protected $guarded = ['id'];
 
-    public function aluno(): BelongsTo
+    public function student(): BelongsTo
     {
         return $this->belongsTo(Student::class);
     }
 
-    public function disciplina(): BelongsTo
+    public function subject(): BelongsTo
     {
         return $this->belongsTo(Subject::class);
     }

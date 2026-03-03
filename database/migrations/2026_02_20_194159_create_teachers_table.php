@@ -18,6 +18,8 @@ return new class extends Migration
                 ->cascadeOnDelete();
             $table->string('specialization')
                 ->nullable();
+            $table->string('specialization_college')
+                ->nullable();
             $table->integer('workload')
                 ->comment('In hours');
             $table->double('salary')
