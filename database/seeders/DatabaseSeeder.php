@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\UserRole;
 use App\Models\Admin;
 use App\Models\Classroom;
 use App\Models\Grade;
@@ -24,49 +25,65 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $adminUser = User::factory()->create([
-            'name' => 'Lucas',
+            'name' => 'Lucas César Soares Santos',
             'birth_date' => '2003-09-04',
             'enrollment' => '202299644',
             'registration_number' => '17804597770',
             'address' => '{"cep":"29101-780","logradouro":"Rua Goiânia","complemento":"até 1000 - lado par","unidade":"","bairro":"Itapuã","localidade":"Vila Velha","uf":"ES","estado":"Espírito Santo","regiao":"Sudeste","ibge":"3205200","gia":"","ddd":"27","siafi":"5703"}',
             'gender' => 'male',
+            'role' => UserRole::Admin,
             'email' => 'lucas@dev.com',
-            'password' => bcrypt('1234'),
+            'institutional_email' => 'lucas.santos@escola.com',
+            'password' => Hash::make('1234'),
         ]);
 
         Admin::factory()->create([
             'user_id' => $adminUser->id,
+            'workload' => 40,
+            'salary' => 5000.00,
             'position' => 'principal'
         ]);
 
-        $subjects = Subject::factory(10)->create();
-        $classrooms = Classroom::factory(5)->create();
-        $teachers = Teacher::factory(8)->create();
+        $studentUser = User::factory()->create([
+            'name' => 'Renato César dos Santos',
+            'birth_date' => '1958-12-10',
+            'enrollment' => '202245679',
+            'registration_number' => '55793282776',
+            'address' => '{"cep": "29101-680", "logradouro": "Rua Porto Alegre", "complemento": "até 900 - lado par", "unidade": "", "bairro": "Itapuã", "localidade": "Vila Velha", "uf": "ES", "estado": "Espírito Santo", "regiao": "Sudeste", "ibge": "3205200", "gia": "", "ddd": "27", "siafi": "5703"}',
+            'gender' => 'male',
+            'role' => UserRole::Student,
+            'email' => 'renatovisk@gmail.com',
+            'institutional_email' => 'renato.santos@escola.com',
+            'password' => Hash::make('1234'),
+        ]);
 
-        $classrooms->each(function ($classroom) use ($subjects) {
-            $students = Student::factory(30)->create([
-                'classroom_id' => $classroom->id
-            ]);
+        Student::factory()->create([
+            'user_id' => $studentUser->id,
+            'classroom_id' => null,
+            'status' => 'enrolled',
+            'guardian' => 'Maria dos Santos',
+            'guardian_contact' => '27999999999'
+        ]);
 
-            $students->each(function ($student) use ($subjects) {
-                foreach ($subjects->random(5) as $subject) {
-                    Grade::factory()->create([
-                        'student_id' => $student->id,
-                        'subject_id' => $subject->id,
-                    ]);
-                }
-            });
-        });
+        $teacherUser = User::factory()->create([
+            'name' => 'Rosana Ferreira Soares Santos',
+            'birth_date' => '1970-12-22',
+            'enrollment' => '202255773',
+            'registration_number' => '3850328',
+            'address' => '{"cep": "29101-680", "logradouro": "Rua Porto Alegre", "complemento": "até 900 - lado par", "unidade": "", "bairro": "Itapuã", "localidade": "Vila Velha", "uf": "ES", "estado": "Espírito Santo", "regiao": "Sudeste", "ibge": "3205200", "gia": "", "ddd": "27", "siafi": "5703"}',
+            'gender' => 'female',
+            'role' => UserRole::Teacher,
+            'email' => 'rosanalucas@gmail.com',
+            'institutional_email' => 'rosana.santos@escola.com',
+            'password' => Hash::make('1234'),
+        ]);
 
-        foreach ($classrooms as $classroom) {
-            $randomSubjects = $subjects->random(3);
-            foreach ($randomSubjects as $subject) {
-                DB::table('classroom_subjects')->insert([
-                    'classroom_id' => $classroom->id,
-                    'subject_id' => $subject->id,
-                    'teacher_id' => $teachers->random()->id
-                ]);
-            }
-        }
+        Teacher::factory()->create([
+            'user_id' => $teacherUser->id,
+            'specialization' => 'Matemática',
+            'specialization_college' => 'Universidade Federal do Espírito Santo - UFES',
+            'workload' => 20,
+            'salary' => 3000.00
+        ]);
     }
 }

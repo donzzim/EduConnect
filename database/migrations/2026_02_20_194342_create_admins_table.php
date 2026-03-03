@@ -21,7 +21,6 @@ return new class extends Migration
             $table->double('salary')
                 ->comment('R$');
             $table->enum('position', ['coordinator', 'principal']);
-            $table->timestamps();
         });
     }
 

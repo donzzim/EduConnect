@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Admin extends Model
 {
     use HasFactory;
+    public $timestamps = false;
     protected $table = 'admins';
     protected $guarded = [
         'id'

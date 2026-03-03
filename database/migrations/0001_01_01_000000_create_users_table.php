@@ -24,6 +24,11 @@ return new class extends Migration
             $table->json('address')
                 ->nullable();
             $table->enum('gender', ['male', 'female', 'other']);
+            $table->enum('role', ['student', 'teacher', 'admin'])
+                ->default('student');
+            $table->string('institutional_email')
+                ->unique()
+                ->nullable();
             $table->string('email')
                 ->unique()
                 ->nullable();
