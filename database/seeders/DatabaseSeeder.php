@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $adminUser = User::factory()->create([
+        $adminUser = User::create([
             'name' => 'Lucas César Soares Santos',
             'birth_date' => '2003-09-04',
             'enrollment' => '202299644',
@@ -33,18 +33,18 @@ class DatabaseSeeder extends Seeder
             'gender' => 'male',
             'role' => UserRole::Admin,
             'email' => 'lucas@dev.com',
-            'institutional_email' => 'lucas.santos@escola.com',
+            'institutional_email' => 'lucas.santos@educonnect.com',
             'password' => Hash::make('1234'),
         ]);
 
-        Admin::factory()->create([
+        Admin::create([
             'user_id' => $adminUser->id,
             'workload' => 40,
             'salary' => 5000.00,
             'position' => 'principal'
         ]);
 
-        $studentUser = User::factory()->create([
+        $studentUser = User::create([
             'name' => 'Renato César dos Santos',
             'birth_date' => '1958-12-10',
             'enrollment' => '202245679',
@@ -53,11 +53,11 @@ class DatabaseSeeder extends Seeder
             'gender' => 'male',
             'role' => UserRole::Student,
             'email' => 'renatovisk@gmail.com',
-            'institutional_email' => 'renato.santos@escola.com',
+            'institutional_email' => 'renato.santos@educonnect.com',
             'password' => Hash::make('1234'),
         ]);
 
-        Student::factory()->create([
+        Student::create([
             'user_id' => $studentUser->id,
             'classroom_id' => null,
             'status' => 'enrolled',
@@ -65,7 +65,7 @@ class DatabaseSeeder extends Seeder
             'guardian_contact' => '27999999999'
         ]);
 
-        $teacherUser = User::factory()->create([
+        $teacherUser = User::create([
             'name' => 'Rosana Ferreira Soares Santos',
             'birth_date' => '1970-12-22',
             'enrollment' => '202255773',
@@ -74,11 +74,11 @@ class DatabaseSeeder extends Seeder
             'gender' => 'female',
             'role' => UserRole::Teacher,
             'email' => 'rosanalucas@gmail.com',
-            'institutional_email' => 'rosana.santos@escola.com',
+            'institutional_email' => 'rosana.santos@educonnect.com',
             'password' => Hash::make('1234'),
         ]);
 
-        Teacher::factory()->create([
+        Teacher::create([
             'user_id' => $teacherUser->id,
             'specialization' => 'Matemática',
             'specialization_college' => 'Universidade Federal do Espírito Santo - UFES',

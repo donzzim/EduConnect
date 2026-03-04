@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Enums\UserRole;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -26,6 +28,7 @@ class User extends Authenticatable
         'enrollment',
         'registration_number',
         'address',
+        'role',
         'gender',
         'password',
     ];
@@ -50,6 +53,8 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'address' => 'array',
+            'birth_date' => 'date',
         ];
     }
 
@@ -90,11 +95,21 @@ class User extends Authenticatable
 
     public function canAccessPanel(Panel $panel): bool
     {
-        if ($panel->getId() === 'admin'  && ($this->hasRole('admin'))) {
+        if ($panel->getId() === 'admin'  && ($this->role === 'admin')) {
             return true;
         }
         // spatie permission
         // criar tabela pra Role
         return false;
+    }
+
+    public function redirectTo()
+    {
+        return match ($this->role) {
+            UserRole::Teacher->value => '/teacher/dashboard',
+            UserRole::Student->value => '/student/dashboard',
+            UserRole::Admin->value => '/admin',
+            default => '/',
+        };
     }
 }
