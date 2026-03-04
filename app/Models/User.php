@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use Filament\Models\Contracts\FilamentUser;
 use App\Enums\UserRole;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -96,11 +97,7 @@ class User extends Authenticatable implements FilamentUser
 
     public function canAccessPanel(Panel $panel): bool
     {
-        if ($panel->getId() === 'admin'  && isAdmin()) {
-            return true;
-        }
-        
-        return false;
+        return $panel->getId() === 'admin' && $this->isAdmin();
     }
 
     public function redirectTo()
