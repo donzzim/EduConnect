@@ -72,6 +72,7 @@ php artisan serve
 ```
 ### Terminal 2 (Vite/Assets):
 ```bash
+npm run build
 npm run dev
 ```
 O projeto estará disponível em: http://localhost:8000
