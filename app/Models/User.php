@@ -31,6 +31,7 @@ class User extends Authenticatable
         'role',
         'gender',
         'password',
+        'role'
     ];
 
     /**
@@ -58,15 +59,15 @@ class User extends Authenticatable
         ];
     }
 
-    /**
-     * The model's default values for attributes.
-     *
-     * @var array
-     */
-    protected $attributes = [
-        'name' => 'John Doe'
-        // Nome vem 'John Doe' como default
-    ];
+    // /**
+    //  * The model's default values for attributes.
+    //  *
+    //  * @var array
+    //  */
+    // protected $attributes = [
+    //     'name' => 'John Doe'
+    //     // Nome vem 'John Doe' como default
+    // ];
 
     public function getGenderLabelAttribute(): string
     {
@@ -95,12 +96,7 @@ class User extends Authenticatable
 
     public function canAccessPanel(Panel $panel): bool
     {
-        if ($panel->getId() === 'admin'  && ($this->role === 'admin')) {
-            return true;
-        }
-        // spatie permission
-        // criar tabela pra Role
-        return false;
+        return $panel->getId() === 'admin' && $this->isAdmin();
     }
 
     public function redirectTo()
