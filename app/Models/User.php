@@ -100,7 +100,7 @@ class User extends Authenticatable implements FilamentUser
         return $panel->getId() === 'admin' && $this->isAdmin();
     }
 
-    public function redirectTo()
+    public function redirectTo(): string
     {
         return match ($this->role) {
             UserRole::Teacher->value => '/teacher/dashboard',
