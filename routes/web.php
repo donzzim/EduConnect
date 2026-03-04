@@ -25,14 +25,6 @@ Route::middleware(['auth', 'verified', 'role:teacher'])->group(function () {
     })->name('teacher.index');
 });
 
-// Route::get('/dashboard', function () {
-//     return match (auth()->user()?->role) {
-//         'admin' => redirect('/admin'),
-//         'teacher' => redirect()->route('teacher.index'),
-//         default => redirect()->route('student.index'),
-//     };
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
