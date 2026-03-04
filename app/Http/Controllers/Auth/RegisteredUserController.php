@@ -38,15 +38,21 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'institutional_email' => $request->institutional_email, // 
+            'institutional_email' => $request->institutional_email,
             'password' => Hash::make($request->password),
-            'role' => $request->role ?? 'student' // 
+            'role' => $request->role ?? 'student'
         ]);
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        $redirectTo = match ($user->role) {
+            'admin' => '/admin',
+            'teacher' => route('teacher.index', absolute: false),
+            default => route('student.index', absolute: false),
+        };
+
+        return redirect($redirectTo);
     }
 }
