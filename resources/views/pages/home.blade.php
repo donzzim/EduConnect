@@ -35,9 +35,9 @@
                     <a href="{{ route('about') }}"
                         class="bg-slate-900 text-white px-8 py-3 rounded-xl font-semibold hover:bg-slate-800 transition">Saiba
                         Mais</a>
-                    <button
+                    <a href="{{ route('project.schedule') }}"
                         class="border border-slate-300 text-slate-700 px-8 py-3 rounded-xl font-semibold hover:bg-slate-100 transition">Cronograma
-                        2026</button>
+                        2026</a>
                 </div>
             </div>
             <div class="md:w-1/2">
@@ -259,3 +259,4 @@
         </div>
     </footer>
 @endsection
+

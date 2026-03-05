@@ -11,6 +11,10 @@ Route::get('/saibamais', function () {
     return view('pages.about');
 })->name('about');
 
+Route::get('/cronograma-projeto', function () {
+    return view('pages.project-schedule');
+})->name('project.schedule');
+
 Route::view('/acesso-negado', 'errors.403')->name('access.denied');
 
 Route::middleware('guest')->group(function () {
