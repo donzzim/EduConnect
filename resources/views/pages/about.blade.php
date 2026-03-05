@@ -6,11 +6,18 @@
 
 @section('content')
     <x-nav>
-        <a href="{{ route('home') }}" class="text-2xl font-bold text-indigo-600 tracking-tight">Edu<span
-                class="text-slate-800">Connect</span></a>
-        <a href="{{ route('home') }}" class="text-slate-600 hover:text-indigo-600 font-medium transition">
-            <i class="fa-solid fa-arrow-left mr-2"></i> Voltar para Home
-        </a>
+        <div class="flex items-center">
+            <a href="{{ route('home') }}" class="flex items-center gap-3 group">
+                <div
+                    class="flex items-center justify-center w-10 h-10 bg-indigo-600 rounded-xl shadow-lg shadow-blue-200 transition-transform group-hover:scale-105">
+                    <i class="fas fa-graduation-cap text-white text-xl"></i>
+                </div>
+
+                <span class="text-2xl font-extrabold tracking-tight">
+                    <span class="text-indigo-600">EDU</span><span class="text-slate-800">CONNECT</span>
+                </span>
+            </a>
+        </div>
     </x-nav>
 
     <header class="py-16 bg-gradient-to-b from-white to-slate-50">

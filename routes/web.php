@@ -13,6 +13,12 @@ Route::get('/saibamais', function () {
 
 Route::view('/acesso-negado', 'errors.403')->name('access.denied');
 
+Route::middleware('guest')->group(function () {
+    Route::redirect('/admin/login', '/login');
+    Route::redirect('/teacher/login', '/login');
+    Route::redirect('/student/login', '/login');
+});
+
 Route::middleware(['auth', 'verified', 'role:student'])->group(function () {
     Route::get('/student', function () {
         return view('pages.student.index');
