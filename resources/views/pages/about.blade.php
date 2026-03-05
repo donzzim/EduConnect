@@ -82,7 +82,7 @@
                 <div class="order-1 md:order-2">
                     <h3 class="text-3xl font-bold text-slate-800 mb-6">Como o EduConnect funciona?</h3>
                     <p class="text-slate-600 mb-6 leading-relaxed">
-                        Utilizamos modelos de <strong>Machine Learning</strong> treinados para analisar o comportamento
+                        Utilizamos modelos de <strong>Agentes de IA</strong> treinados para analisar o comportamento
                         acadêmico. O sistema processa dados inseridos diariamente por professores para gerar insights em
                         tempo real.
                     </p>
