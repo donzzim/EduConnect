@@ -13,7 +13,7 @@
         <p class="text-sm font-semibold uppercase tracking-wide text-amber-600">Erro 404</p>
         <h1 class="mt-3 text-4xl font-bold">Página não encontrada</h1>
         <p class="mt-4 text-base text-gray-600">
-            A rota que você tentou acessar não existe ou foi movida.
+            A página que você tentou acessar não existe ou foi movida.
         </p>
 
         <div class="mt-8">

@@ -34,6 +34,15 @@ class LoginRequest extends FormRequest
         ];
     }
 
+    public function messages(): array
+    {
+        return [
+            'email.required' => 'Informe seu email institucional ou matrícula.',
+            'email.email' => 'Digite um email válido.',
+            'password.required' => 'Informe sua senha.',
+        ];
+    }
+
     /**
      * Attempt to authenticate the request's credentials.
      *
@@ -54,7 +63,8 @@ class LoginRequest extends FormRequest
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'email' => trans('auth.failed'),
+                'email' => 'Credenciais incorretas.',
+                'password' => 'Senha incorreta.',
             ]);
         }
 

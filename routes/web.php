@@ -7,15 +7,15 @@ Route::get('/', function () {
     return view('pages.home');
 })->name('home');
 
-Route::get('/saibamais', function () {
+Route::get('/about', function () {
     return view('pages.about');
 })->name('about');
 
-Route::get('/cronograma-projeto', function () {
+Route::get('/schedule', function () {
     return view('pages.project-schedule');
 })->name('project.schedule');
 
-Route::view('/acesso-negado', 'errors.403')->name('access.denied');
+Route::view('/access-denied', 'errors.403')->name('access.denied');
 
 Route::middleware('guest')->group(function () {
     Route::redirect('/admin/login', '/login');
