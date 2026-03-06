@@ -5,21 +5,6 @@
 @endpush
 
 @section('content')
-    <x-nav>
-        <div class="flex items-center">
-            <a href="{{ route('home') }}" class="flex items-center gap-3 group">
-                <div
-                    class="flex items-center justify-center w-10 h-10 bg-indigo-600 rounded-xl shadow-lg shadow-blue-200 transition-transform group-hover:scale-105">
-                    <i class="fas fa-graduation-cap text-white text-xl"></i>
-                </div>
-
-                <span class="text-2xl font-extrabold tracking-tight">
-                    <span class="text-indigo-600">EDU</span><span class="text-slate-800">CONNECT</span>
-                </span>
-            </a>
-        </div>
-    </x-nav>
-
     <header class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center">
             <div class="md:w-1/2 mb-10 md:mb-0">
@@ -35,9 +20,8 @@
                     <a href="{{ route('about') }}"
                         class="bg-slate-900 text-white px-8 py-3 rounded-xl font-semibold hover:bg-slate-800 transition">Saiba
                         Mais</a>
-                    <a href="{{ route('project.schedule') }}"
-                        class="border border-slate-300 text-slate-700 px-8 py-3 rounded-xl font-semibold hover:bg-slate-100 transition">Cronograma
-                        2026</a>
+                    <a href="{{ route('functionalities') }}"
+                        class="border border-slate-300 text-slate-700 px-8 py-3 rounded-xl font-semibold hover:bg-slate-100 transition">Como funciona?</a>
                 </div>
             </div>
             <div class="md:w-1/2">
@@ -243,7 +227,7 @@
                     <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Pronto para modernizar sua escola?</h2>
                     <p class="text-slate-400 text-lg mb-10 max-w-2xl mx-auto">Junte-se a centenas de instituições que já
                         estão combatendo a evasão escolar com inteligência de dados.</p>
-                    <a href="/contato"
+                    <a href="{{route('contact')}}"
                         class="bg-white text-slate-900 px-10 py-4 rounded-xl font-bold hover:bg-indigo-50 transition shadow-xl">Solicitar
                         Demonstração</a>
                 </div>
@@ -252,11 +236,4 @@
             </div>
         </div>
     </section>
-
-    <footer class="bg-white border-t border-slate-200 py-10">
-        <div class="max-w-7xl mx-auto px-4 text-center text-slate-500 text-sm">
-            &copy; 2026 EduConnect - Sistema Escolar Integrado. Todos os direitos reservados.
-        </div>
-    </footer>
 @endsection
-

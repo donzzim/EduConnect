@@ -85,5 +85,39 @@ class DatabaseSeeder extends Seeder
             'workload' => 20,
             'salary' => 3000.00
         ]);
+
+        $studentUser = User::create([
+            'name' => 'Rafael Christian Silva Wernesbach',
+            'birth_date' => '2005-03-20',
+            'enrollment' => '202308237',
+            'registration_number' => '16073879725',
+            'address' => '{"cep": "29101-025",
+                "logradouro": "Rua Dom Jorge de Menezes",
+                "complemento": "",
+                "unidade": "",
+                "bairro": "Praia da Costa",
+                "localidade": "Vila Velha",
+                "uf": "ES",
+                "estado": "Espírito Santo",
+                "regiao": "Sudeste",
+                "ibge": "3205200",
+                "gia": "",
+                "ddd": "27",
+                "siafi": "5703"
+            }',
+            'gender' => 'other',
+            'role' => UserRole::Student,
+            'email' => 'rcwernesbach@gmail.com',
+            'institutional_email' => 'rafael.silva@educonnect.com',
+            'password' => Hash::make('ra@202005'),
+        ]);
+
+        Student::create([
+            'user_id' => $studentUser->id,
+            'classroom_id' => null,
+            'status' => 'enrolled',
+            'guardian' => 'Rafael Christian Silva Wernesbach',
+            'guardian_contact' => '27996418383'
+        ]);
     }
 }

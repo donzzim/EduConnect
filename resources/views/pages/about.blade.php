@@ -5,21 +5,6 @@
 @endpush
 
 @section('content')
-    <x-nav>
-        <div class="flex items-center">
-            <a href="{{ route('home') }}" class="flex items-center gap-3 group">
-                <div
-                    class="flex items-center justify-center w-10 h-10 bg-indigo-600 rounded-xl shadow-lg shadow-blue-200 transition-transform group-hover:scale-105">
-                    <i class="fas fa-graduation-cap text-white text-xl"></i>
-                </div>
-
-                <span class="text-2xl font-extrabold tracking-tight">
-                    <span class="text-indigo-600">EDU</span><span class="text-slate-800">CONNECT</span>
-                </span>
-            </a>
-        </div>
-    </x-nav>
-
     <header class="py-16 bg-gradient-to-b from-white to-slate-50">
         <div class="max-w-4xl mx-auto px-4 text-center">
             <span class="text-indigo-600 font-bold tracking-widest uppercase text-sm">Nossa Missão</span>
@@ -106,7 +91,7 @@
         </div>
     </section>
 
-    <footer class="bg-white border-t border-slate-200 py-12 mt-10">
+    <section class="bg-white border-t border-slate-200 py-12 mt-10">
         <div class="max-w-7xl mx-auto px-4 text-center">
             <p class="text-slate-500 text-sm mb-4 tracking-wider uppercase font-semibold">Tecnologias Utilizadas</p>
             <div class="flex justify-center space-x-6 text-slate-400 text-2xl">
@@ -119,5 +104,5 @@
                 EduConnect &copy; 2026 - Inovação na Educação Pública e Privada.
             </div>
         </div>
-    </footer>
+    </section>
 @endsection

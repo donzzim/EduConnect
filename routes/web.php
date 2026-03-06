@@ -11,9 +11,13 @@ Route::get('/about', function () {
     return view('pages.about');
 })->name('about');
 
-Route::get('/schedule', function () {
-    return view('pages.project-schedule');
-})->name('project.schedule');
+Route::get('/contact', function () {
+    return view('pages.contact');
+})->name('contact');
+
+Route::get('/functionalities', function () {
+    return view('pages.functionalities');
+})->name('functionalities');
 
 Route::view('/access-denied', 'errors.403')->name('access.denied');
 
