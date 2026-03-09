@@ -1,14 +1,13 @@
-﻿<?php
-
-namespace App\Filament\Resources\Users\Schemas;
+<?php
+namespace App\Helpers;
 
 use App\Services\ViaCepService;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
-use Filament\Schemas\Components\Tabs;
-use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
+use Filament\Schemas\Components\Tabs;
+use Filament\Schemas\Components\Tabs\Tab;
 
 class UserProfileForm
 {

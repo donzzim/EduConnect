@@ -19,16 +19,13 @@ class UsersTable
                     ->label('Nome')
                     ->searchable()
                     ->sortable(),
-
                 TextColumn::make('email')
                     ->label('E-mail')
                     ->searchable(),
-
                 TextColumn::make('enrollment')
                     ->label('Matrícula')
                     ->searchable()
                     ->sortable(),
-
                 TextColumn::make('role')
                     ->label('Perfil')
                     ->badge()
@@ -44,17 +41,14 @@ class UsersTable
                         'admin' => 'danger',
                         default => 'gray',
                     }),
-
                 TextColumn::make('institutional_email')
                     ->label('E-mail institucional')
                     ->toggleable(isToggledHiddenByDefault: true),
-
                 TextColumn::make('birth_date')
                     ->label('Nascimento')
                     ->date('d/m/Y')
                     ->sortable(),
             ])
-
             ->filters([
                 SelectFilter::make('role')
                     ->label('Perfil')
@@ -64,11 +58,9 @@ class UsersTable
                         'admin' => 'Admin',
                     ]),
             ])
-
             ->recordActions([
                 EditAction::make(),
             ])
-
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),

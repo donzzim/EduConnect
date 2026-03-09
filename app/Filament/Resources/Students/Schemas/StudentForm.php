@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\Students\Schemas;
 
-use App\Filament\Resources\Users\Schemas\UserProfileForm;
+use App\Helpers\UserProfileForm;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
