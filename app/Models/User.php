@@ -8,6 +8,7 @@ use Filament\Models\Contracts\FilamentUser;
 use App\Enums\UserRole;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -92,6 +93,21 @@ class User extends Authenticatable implements FilamentUser
     public function isStudent(): bool
     {
         return $this->role === 'student';
+    }
+
+    public function student(): HasOne
+    {
+        return $this->hasOne(Student::class);
+    }
+
+    public function teacher(): HasOne
+    {
+        return $this->hasOne(Teacher::class);
+    }
+
+    public function admin(): HasOne
+    {
+        return $this->hasOne(Admin::class);
     }
 
     public function canAccessPanel(Panel $panel): bool

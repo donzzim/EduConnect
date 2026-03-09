@@ -6,6 +6,7 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class UsersTable
@@ -18,37 +19,56 @@ class UsersTable
                     ->label('Nome')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('birth_date')
-                    ->label('Data de Nascimento')
-                    ->alignCenter()
-                    ->date('d/m/Y')
-                    ->sortable(),
+
+                TextColumn::make('email')
+                    ->label('E-mail')
+                    ->searchable(),
+
                 TextColumn::make('enrollment')
                     ->label('Matrícula')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('registration_number')
-                    ->label('Documento')
-                    ->searchable()
-                    ->sortable(),
-                TextColumn::make('gender_label')
-                    ->label('Sexo')
-                    ->alignCenter()
-                    ->sortable()
+
+                TextColumn::make('role')
+                    ->label('Perfil')
                     ->badge()
-                    ->color(fn(string $state): string => match ($state) {
-                        'Masculino' => 'info',
-                        'Feminino' => 'danger',
-                        'Outro' => 'gray',
-                        default => 'secondary',
+                    ->formatStateUsing(fn (string $state): string => match ($state) {
+                        'student' => 'Aluno',
+                        'teacher' => 'Professor',
+                        'admin' => 'Admin',
+                        default => $state,
+                    })
+                    ->color(fn (string $state): string => match ($state) {
+                        'student' => 'info',
+                        'teacher' => 'warning',
+                        'admin' => 'danger',
+                        default => 'gray',
                     }),
+
+                TextColumn::make('institutional_email')
+                    ->label('E-mail institucional')
+                    ->toggleable(isToggledHiddenByDefault: true),
+
+                TextColumn::make('birth_date')
+                    ->label('Nascimento')
+                    ->date('d/m/Y')
+                    ->sortable(),
             ])
+
             ->filters([
-                //
+                SelectFilter::make('role')
+                    ->label('Perfil')
+                    ->options([
+                        'student' => 'Aluno',
+                        'teacher' => 'Professor',
+                        'admin' => 'Admin',
+                    ]),
             ])
+
             ->recordActions([
                 EditAction::make(),
             ])
+
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),

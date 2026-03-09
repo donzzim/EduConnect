@@ -22,6 +22,11 @@ class Student extends Model
         'password' => 'hashed',
         'address' => 'array',
     ];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
     public function classroom(): BelongsTo
     {
         return $this->belongsTo(Classroom::class);
