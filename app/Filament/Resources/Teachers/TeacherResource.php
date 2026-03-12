@@ -18,7 +18,7 @@ use UnitEnum;
 class TeacherResource extends Resource
 {
     protected static ?string $model = Teacher::class;
-
+    protected static ?string $modelLabel = 'Professores';
     protected static ?string $navigationLabel = 'Professores';
 
     protected static string | UnitEnum | null $navigationGroup = 'Cadastros';

@@ -21,7 +21,7 @@ class AdminResource extends Resource
 
     protected static ?string $navigationLabel = 'Admins';
 
-    protected static string | UnitEnum | null $navigationGroup = 'Administração';
+    protected static string | UnitEnum | null $navigationGroup = 'Cadastros';
 
     protected static string | BackedEnum | null $navigationIcon = Heroicon::OutlinedShieldCheck;
 
