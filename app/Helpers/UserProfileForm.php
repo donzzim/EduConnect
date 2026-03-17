@@ -35,6 +35,7 @@ class UserProfileForm
 
                                 DatePicker::make('user_birth_date')
                                     ->label('Data de nascimento')
+                                    ->native()
                                     ->placeholder('Selecione a data')
                                     ->required(),
 
@@ -138,8 +139,20 @@ class UserProfileForm
                                     ->placeholder('00000-000')
                                     ->mask('99999-999')
                                     ->live(onBlur: true)
-                                    ->afterStateUpdated(function ($state, callable $set): void {
+                                    ->afterStateUpdated(function ($state, callable $set, callable $get): void {
                                         if (blank($state)) {
+                                            return;
+                                        }
+
+                                        $normalizedCep = preg_replace('/\D+/', '', (string) $state);
+
+                                        if (strlen($normalizedCep) !== 8) {
+                                            Notification::make()
+                                                ->title('CEP inválido')
+                                                ->body('Informe um CEP com 8 dígitos para buscar o endereço.')
+                                                ->warning()
+                                                ->send();
+
                                             return;
                                         }
 
@@ -147,11 +160,31 @@ class UserProfileForm
                                             $address = app(ViaCepService::class)->search((string) $state);
 
                                             $set('user_address.cep', $address['cep']);
-                                            $set('user_address.logradouro', $address['logradouro']);
-                                            $set('user_address.bairro', $address['bairro']);
-                                            $set('user_address.cidade', $address['cidade']);
-                                            $set('user_address.uf', $address['uf']);
-                                            $set('user_address.complemento', $address['complemento']);
+
+                                            $set(
+                                                'user_address.logradouro',
+                                                $address['logradouro'] ?? $get('user_address.logradouro')
+                                            );
+
+                                            $set(
+                                                'user_address.bairro',
+                                                $address['bairro'] ?? $get('user_address.bairro')
+                                            );
+
+                                            $set(
+                                                'user_address.cidade',
+                                                $address['cidade'] ?? $get('user_address.cidade')
+                                            );
+
+                                            $set(
+                                                'user_address.uf',
+                                                $address['uf'] ?? $get('user_address.uf')
+                                            );
+
+                                            $set(
+                                                'user_address.complemento',
+                                                $address['complemento'] ?? $get('user_address.complemento')
+                                            );
 
                                             Notification::make()
                                                 ->title('CEP localizado com sucesso.')

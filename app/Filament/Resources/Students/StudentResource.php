@@ -18,6 +18,7 @@ use UnitEnum;
 class StudentResource extends Resource
 {
     protected static ?string $model = Student::class;
+    protected static ?string $modelLabel = 'Estudante';
 
     protected static ?string $navigationLabel = 'Alunos';
 

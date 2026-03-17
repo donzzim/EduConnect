@@ -18,6 +18,7 @@ return new class extends Migration
                 ->cascadeOnDelete();
             $table->foreignIdFor(\App\Models\Classroom::class)
                 ->nullable()
+                ->default(null) // Depois tira isso
                 ->constrained()
                 ->nullOnDelete();
             $table->enum('status', ['enrolled', 'passed', 'failed'])
