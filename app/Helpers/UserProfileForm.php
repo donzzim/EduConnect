@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Helpers;
 
 use App\Services\ViaCepService;
@@ -52,14 +53,14 @@ class UserProfileForm
                                     ->placeholder('Ex.: 2026001234')
                                     ->required()
                                     ->maxLength(10)
-                                    ->unique('users', 'enrollment', ignorable: fn ($record) => $record?->user),
+                                    ->unique('users', 'enrollment', ignorable: fn($record) => $record?->user),
 
                                 TextInput::make('user_registration_number')
                                     ->label('Documento (RG/CPF)')
                                     ->placeholder('Informe o RG ou CPF')
                                     ->required()
                                     ->maxLength(255)
-                                    ->unique('users', 'registration_number', ignorable: fn ($record) => $record?->user),
+                                    ->unique('users', 'registration_number', ignorable: fn($record) => $record?->user),
                             ])
                             ->columns([
                                 'default' => 1,
@@ -81,7 +82,7 @@ class UserProfileForm
                                     ->placeholder('email@exemplo.com')
                                     ->nullable()
                                     ->maxLength(255)
-                                    ->unique('users', 'email', ignorable: fn ($record) => $record?->user),
+                                    ->unique('users', 'email', ignorable: fn($record) => $record?->user),
 
                                 TextInput::make('user_institutional_email')
                                     ->label('E-mail institucional')
@@ -89,7 +90,7 @@ class UserProfileForm
                                     ->placeholder('usuario@instituicao.edu.br')
                                     ->nullable()
                                     ->maxLength(255)
-                                    ->unique('users', 'institutional_email', ignorable: fn ($record) => $record?->user),
+                                    ->unique('users', 'institutional_email', ignorable: fn($record) => $record?->user),
 
                                 Select::make('user_role')
                                     ->label('Perfil')
@@ -103,18 +104,18 @@ class UserProfileForm
                                     ->password()
                                     ->revealable()
                                     ->placeholder('Mínimo de 8 caracteres')
-                                    ->required(fn (string $operation): bool => $operation === 'create')
+                                    ->required(fn(string $operation): bool => $operation === 'create')
                                     ->confirmed()
                                     ->minLength(8)
                                     ->maxLength(255)
-                                    ->dehydrateStateUsing(fn (?string $state): ?string => blank($state) ? null : $state),
+                                    ->dehydrateStateUsing(fn(?string $state): ?string => blank($state) ? null : $state),
 
                                 TextInput::make('user_password_confirmation')
                                     ->label('Confirme a senha')
                                     ->password()
                                     ->revealable()
                                     ->placeholder('Repita a senha informada')
-                                    ->required(fn (string $operation): bool => $operation === 'create')
+                                    ->required(fn(string $operation): bool => $operation === 'create')
                                     ->dehydrated(false)
                                     ->columnSpanFull(),
                             ])
@@ -189,11 +190,37 @@ class UserProfileForm
                                     ->placeholder('Digite a cidade')
                                     ->maxLength(255),
 
-                                TextInput::make('user_address.uf')
+                                Select::make('user_address.uf')
                                     ->label('UF')
-                                    ->placeholder('ES')
-                                    ->maxLength(2),
-
+                                    ->options([
+                                        'AC' => 'Acre',
+                                        'AL' => 'Alagoas',
+                                        'AP' => 'Amapá',
+                                        'AM' => 'Amazonas',
+                                        'BA' => 'Bahia',
+                                        'CE' => 'Ceará',
+                                        'DF' => 'Distrito Federal',
+                                        'ES' => 'Espírito Santo',
+                                        'GO' => 'Goiás',
+                                        'MA' => 'Maranhão',
+                                        'MT' => 'Mato Grosso',
+                                        'MS' => 'Mato Grosso do Sul',
+                                        'MG' => 'Minas Gerais',
+                                        'PA' => 'Pará',
+                                        'PB' => 'Paraíba',
+                                        'PR' => 'Paraná',
+                                        'PE' => 'Pernambuco',
+                                        'PI' => 'Piauí',
+                                        'RJ' => 'Rio de Janeiro',
+                                        'RN' => 'Rio Grande do Norte',
+                                        'RS' => 'Rio Grande do Sul',
+                                        'RO' => 'Rondônia',
+                                        'RR' => 'Roraima',
+                                        'SC' => 'Santa Catarina',
+                                        'SP' => 'São Paulo',
+                                        'SE' => 'Sergipe',
+                                        'TO' => 'Tocantins',
+                                    ]),
                                 TextInput::make('user_address.complemento')
                                     ->label('Complemento')
                                     ->placeholder('Apartamento, bloco, referência...')

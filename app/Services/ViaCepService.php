@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 namespace App\Services;
 
@@ -9,9 +9,9 @@ class ViaCepService
 {
     public function search(string $cep): array
     {
-        $normalizedCep = preg_replace('/\D/', '', $cep) ?? '';
+        $normalizedCep = preg_replace('/\D+/', '', $cep);
 
-        if (strlen($normalizedCep) !== 8) {
+        if (! is_string($normalizedCep) || strlen($normalizedCep) !== 8) {
             throw new RuntimeException('CEP inválido. Informe 8 dígitos.');
         }
 

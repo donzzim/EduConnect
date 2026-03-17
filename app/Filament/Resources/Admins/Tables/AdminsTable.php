@@ -14,12 +14,15 @@ class AdminsTable
     {
         return $table
             ->columns([
-                TextColumn::make('user.name')->label('Nome')->searchable(),
-                TextColumn::make('user.email')->label('E-mail')->searchable(),
+                TextColumn::make('user.name')->label('Nome')
+                    ->searchable(),
+                TextColumn::make('user.email')
+                    ->label('E-mail')
+                    ->searchable(),
                 TextColumn::make('position')
                     ->label('Cargo')
                     ->badge()
-                    ->formatStateUsing(fn (string $state): string => match ($state) {
+                    ->formatStateUsing(fn(string $state): string => match ($state) {
                         'coordinator' => 'Coordenador(a)',
                         'principal' => 'Diretor(a)',
                         default => $state,

@@ -17,25 +17,37 @@ class UsersTable
             ->columns([
                 TextColumn::make('name')
                     ->label('Nome')
+                    ->toggleable(isToggledHiddenByDefault: false)
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('email')
                     ->label('E-mail')
+                    ->toggleable(isToggledHiddenByDefault: false)
+                    ->searchable(),
+                TextColumn::make('registration_number')
+                    ->label('Documento (RG/CPF)')
+                    ->toggleable(isToggledHiddenByDefault: true)
+                    ->searchable(),
+                TextColumn::make('gender')
+                    ->label('Sexo')
+                    ->toggleable(isToggledHiddenByDefault: true)
                     ->searchable(),
                 TextColumn::make('enrollment')
                     ->label('Matrícula')
+                    ->toggleable(isToggledHiddenByDefault: false)
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('role')
                     ->label('Perfil')
+                    ->toggleable(isToggledHiddenByDefault: false)
                     ->badge()
-                    ->formatStateUsing(fn (string $state): string => match ($state) {
+                    ->formatStateUsing(fn(string $state): string => match ($state) {
                         'student' => 'Aluno',
                         'teacher' => 'Professor',
                         'admin' => 'Admin',
                         default => $state,
                     })
-                    ->color(fn (string $state): string => match ($state) {
+                    ->color(fn(string $state): string => match ($state) {
                         'student' => 'info',
                         'teacher' => 'warning',
                         'admin' => 'danger',
@@ -43,9 +55,10 @@ class UsersTable
                     }),
                 TextColumn::make('institutional_email')
                     ->label('E-mail institucional')
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->toggleable(isToggledHiddenByDefault: false),
                 TextColumn::make('birth_date')
                     ->label('Nascimento')
+                    ->toggleable(isToggledHiddenByDefault: false)
                     ->date('d/m/Y')
                     ->sortable(),
             ])
