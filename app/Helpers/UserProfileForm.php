@@ -31,13 +31,22 @@ class UserProfileForm
                                     ->placeholder('Digite o nome completo')
                                     ->required()
                                     ->maxLength(255)
+                                    ->validationAttribute('nome')
+                                    ->validationMessages([
+                                        'required' => 'O nome é obrigatório.',
+                                        'max_length' => 'O nome não pode ter mais de 255 caracteres.',
+                                    ])
                                     ->columnSpanFull(),
 
                                 DatePicker::make('user_birth_date')
                                     ->label('Data de nascimento')
                                     ->native()
                                     ->placeholder('Selecione a data')
-                                    ->required(),
+                                    ->required()
+                                    ->validationAttribute('data de nascimento')
+                                    ->validationMessages([
+                                        'required' => 'A data de nascimento é obrigatória.',
+                                    ]),
 
                                 Select::make('user_gender')
                                     ->label('Sexo')
@@ -47,21 +56,37 @@ class UserProfileForm
                                         'other' => 'Outro',
                                     ])
                                     ->placeholder('Selecione')
-                                    ->required(),
+                                    ->required()
+                                    ->validationAttribute('sexo')
+                                    ->validationMessages([
+                                        'required' => 'O campo sexo é obrigatório.',
+                                    ]),
 
                                 TextInput::make('user_enrollment')
                                     ->label('Matrícula')
                                     ->placeholder('Ex.: 2026001234')
                                     ->required()
                                     ->maxLength(10)
-                                    ->unique('users', 'enrollment', ignorable: fn($record) => $record?->user),
+                                    ->unique('users', 'enrollment', ignorable: fn ($record) => $record?->user)
+                                    ->validationAttribute('matrícula')
+                                    ->validationMessages([
+                                        'required' => 'A matrícula é obrigatória.',
+                                        'max_length' => 'A matrícula deve ter no máximo 10 caracteres.',
+                                        'unique' => 'Esta matrícula já está cadastrada.',
+                                    ]),
 
                                 TextInput::make('user_registration_number')
                                     ->label('Documento (RG/CPF)')
                                     ->placeholder('Informe o RG ou CPF')
                                     ->required()
                                     ->maxLength(255)
-                                    ->unique('users', 'registration_number', ignorable: fn($record) => $record?->user),
+                                    ->unique('users', 'registration_number', ignorable: fn ($record) => $record?->user)
+                                    ->validationAttribute('documento')
+                                    ->validationMessages([
+                                        'required' => 'O documento é obrigatório.',
+                                        'max_length' => 'O documento não pode ter mais de 255 caracteres.',
+                                        'unique' => 'Este documento já está cadastrado.',
+                                    ]),
                             ])
                             ->columns([
                                 'default' => 1,
@@ -83,7 +108,13 @@ class UserProfileForm
                                     ->placeholder('email@exemplo.com')
                                     ->nullable()
                                     ->maxLength(255)
-                                    ->unique('users', 'email', ignorable: fn($record) => $record?->user),
+                                    ->unique('users', 'email', ignorable: fn ($record) => $record?->user)
+                                    ->validationAttribute('e-mail')
+                                    ->validationMessages([
+                                        'email' => 'Informe um e-mail válido.',
+                                        'max_length' => 'O e-mail não pode ter mais de 255 caracteres.',
+                                        'unique' => 'Este e-mail já está em uso.',
+                                    ]),
 
                                 TextInput::make('user_institutional_email')
                                     ->label('E-mail institucional')
@@ -91,7 +122,13 @@ class UserProfileForm
                                     ->placeholder('usuario@instituicao.edu.br')
                                     ->nullable()
                                     ->maxLength(255)
-                                    ->unique('users', 'institutional_email', ignorable: fn($record) => $record?->user),
+                                    ->unique('users', 'institutional_email', ignorable: fn ($record) => $record?->user)
+                                    ->validationAttribute('e-mail institucional')
+                                    ->validationMessages([
+                                        'email' => 'Informe um e-mail institucional válido.',
+                                        'max_length' => 'O e-mail institucional não pode ter mais de 255 caracteres.',
+                                        'unique' => 'Este e-mail institucional já está cadastrado.',
+                                    ]),
 
                                 Select::make('user_role')
                                     ->label('Perfil')
@@ -105,18 +142,29 @@ class UserProfileForm
                                     ->password()
                                     ->revealable()
                                     ->placeholder('Mínimo de 8 caracteres')
-                                    ->required(fn(string $operation): bool => $operation === 'create')
+                                    ->required(fn (string $operation): bool => $operation === 'create')
                                     ->confirmed()
                                     ->minLength(8)
                                     ->maxLength(255)
-                                    ->dehydrateStateUsing(fn(?string $state): ?string => blank($state) ? null : $state),
+                                    ->validationAttribute('senha')
+                                    ->validationMessages([
+                                        'required' => 'A senha é obrigatória.',
+                                        'confirmed' => 'A confirmação de senha não confere.',
+                                        'min_length' => 'A senha deve ter no mínimo 8 caracteres.',
+                                        'max_length' => 'A senha não pode ter mais de 255 caracteres.',
+                                    ])
+                                    ->dehydrateStateUsing(fn (?string $state): ?string => blank($state) ? null : $state),
 
                                 TextInput::make('user_password_confirmation')
                                     ->label('Confirme a senha')
                                     ->password()
                                     ->revealable()
                                     ->placeholder('Repita a senha informada')
-                                    ->required(fn(string $operation): bool => $operation === 'create')
+                                    ->required(fn (string $operation): bool => $operation === 'create')
+                                    ->validationAttribute('confirmação de senha')
+                                    ->validationMessages([
+                                        'required' => 'A confirmação de senha é obrigatória.',
+                                    ])
                                     ->dehydrated(false)
                                     ->columnSpanFull(),
                             ])
@@ -138,6 +186,11 @@ class UserProfileForm
                                     ->label('CEP')
                                     ->placeholder('00000-000')
                                     ->mask('99999-999')
+                                    ->maxLength(9)
+                                    ->validationAttribute('CEP')
+                                    ->validationMessages([
+                                        'max_length' => 'O CEP deve estar no formato 00000-000.',
+                                    ])
                                     ->live(onBlur: true)
                                     ->afterStateUpdated(function ($state, callable $set, callable $get): void {
                                         if (blank($state)) {
@@ -203,6 +256,10 @@ class UserProfileForm
                                     ->label('Logradouro')
                                     ->placeholder('Rua, avenida, praça...')
                                     ->maxLength(255)
+                                    ->validationAttribute('logradouro')
+                                    ->validationMessages([
+                                        'max_length' => 'O logradouro não pode ter mais de 255 caracteres.',
+                                    ])
                                     ->columnSpan([
                                         'default' => 1,
                                         'md' => 2,
@@ -211,17 +268,29 @@ class UserProfileForm
                                 TextInput::make('user_address.numero')
                                     ->label('Número')
                                     ->placeholder('Ex.: 123')
-                                    ->maxLength(20),
+                                    ->maxLength(20)
+                                    ->validationAttribute('número')
+                                    ->validationMessages([
+                                        'max_length' => 'O número não pode ter mais de 20 caracteres.',
+                                    ]),
 
                                 TextInput::make('user_address.bairro')
                                     ->label('Bairro')
                                     ->placeholder('Digite o bairro')
-                                    ->maxLength(255),
+                                    ->maxLength(255)
+                                    ->validationAttribute('bairro')
+                                    ->validationMessages([
+                                        'max_length' => 'O bairro não pode ter mais de 255 caracteres.',
+                                    ]),
 
                                 TextInput::make('user_address.cidade')
                                     ->label('Cidade')
                                     ->placeholder('Digite a cidade')
-                                    ->maxLength(255),
+                                    ->maxLength(255)
+                                    ->validationAttribute('cidade')
+                                    ->validationMessages([
+                                        'max_length' => 'A cidade não pode ter mais de 255 caracteres.',
+                                    ]),
 
                                 Select::make('user_address.uf')
                                     ->label('UF')
@@ -253,11 +322,17 @@ class UserProfileForm
                                         'SP' => 'São Paulo',
                                         'SE' => 'Sergipe',
                                         'TO' => 'Tocantins',
-                                    ]),
+                                    ])
+                                    ->validationAttribute('UF'),
+
                                 TextInput::make('user_address.complemento')
                                     ->label('Complemento')
                                     ->placeholder('Apartamento, bloco, referência...')
                                     ->maxLength(255)
+                                    ->validationAttribute('complemento')
+                                    ->validationMessages([
+                                        'max_length' => 'O complemento não pode ter mais de 255 caracteres.',
+                                    ])
                                     ->columnSpanFull(),
                             ])
                             ->columns([
