@@ -18,7 +18,7 @@ class AdminFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
+            'user_id' => User::factory()->admin(),
             'workload' => 40,
             'salary' => fake()->randomFloat(2, 5000, 12000),
             'position' => fake()->randomElement(['coordinator', 'principal']),

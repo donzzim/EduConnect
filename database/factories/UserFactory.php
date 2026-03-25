@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\UserRole;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
@@ -229,10 +230,27 @@ class UserFactory extends Factory
             'registration_number' => fake()->unique()->numerify('###########'),
             'address' => json_encode(fake()->randomElement([$brazilian_address, $response])),
             'gender' => fake()->randomElement(['male', 'female', 'other']),
+            'role' => UserRole::Student->value,
             'email' => fake()->unique()->safeEmail(),
+            'institutional_email' => fake()->unique()->userName() . '@educonnect.com',
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
         ];
+    }
+
+    public function student(): static
+    {
+        return $this->state(fn() => ['role' => UserRole::Student->value]);
+    }
+
+    public function teacher(): static
+    {
+        return $this->state(fn() => ['role' => UserRole::Teacher->value]);
+    }
+
+    public function admin(): static
+    {
+        return $this->state(fn() => ['role' => UserRole::Admin->value]);
     }
 }

@@ -46,7 +46,7 @@ class TeacherFactory extends Factory
         ];
 
         return [
-            'user_id' => User::factory(),
+            'user_id' => User::factory()->teacher(),
             'specialization' => fake()->randomElement($specializations),
             'specialization_college' => fake()->randomElement($colleges),
             'workload' => fake()->numberBetween(20, 40),

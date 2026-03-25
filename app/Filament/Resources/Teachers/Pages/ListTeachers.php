@@ -13,7 +13,9 @@ class ListTeachers extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            CreateAction::make(),
+            CreateAction::make()
+                ->label('Cadastrar')
+                ->icon('heroicon-o-user-plus'),
         ];
     }
 }

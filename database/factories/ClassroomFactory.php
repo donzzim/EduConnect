@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Arr;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Classroom>
@@ -16,19 +17,27 @@ class ClassroomFactory extends Factory
      */
     public function definition(): array
     {
+        $schoolYear = (int) now()->format('Y');
+        $gradeLevel = fake()->numberBetween(1, 3);
+        $section = Arr::random(['A', 'B', 'C', 'D']);
         return [
-            'name' => fake()->randomElement([
-                '1º Ano A',
-                '1º Ano B',
-                '1º Ano C',
-                '2º Ano A',
-                '2º Ano B',
-                '2º Ano C',
-                '3º Ano A',
-                '3º Ano B',
-            ]),
-            'shift' => fake()->randomElement(['morning', 'afternoon', 'night']),
-            'school_year' => 2026,
+            'name' => sprintf('%dº Ano %s', $gradeLevel, $section),
+            'shift' => Arr::random(['morning', 'afternoon', 'night']),
+            'school_year' => $schoolYear,
         ];
+    }
+    public function morning(): static
+    {
+        return $this->state(fn() => ['shift' => 'morning']);
+    }
+
+    public function afternoon(): static
+    {
+        return $this->state(fn() => ['shift' => 'afternoon']);
+    }
+
+    public function night(): static
+    {
+        return $this->state(fn() => ['shift' => 'night']);
     }
 }

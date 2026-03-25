@@ -21,20 +21,24 @@ class GradeFactory extends Factory
         return [
             'student_id' => Student::factory(),
             'subject_id' => Subject::factory(),
-            'T1' => fake()->randomFloat(2, 0, 7),
-            'A1' => fake()->randomFloat(2, 0, 3),
-            'T2' => fake()->randomFloat(2, 0, 7),
-            'A2' => fake()->randomFloat(2, 0, 3),
-            'T3' => fake()->randomFloat(2, 0, 7),
-            'A3' => fake()->randomFloat(2, 0, 3),
-            'T4' => fake()->randomFloat(2, 0, 7),
-            'A4' => fake()->randomFloat(2, 0, 3),
-            'T5' => fake()->randomFloat(2, 0, 7),
-            'A5' => fake()->randomFloat(2, 0, 3),
-            'T6' => fake()->randomFloat(2, 0, 7),
-            'A6' => fake()->randomFloat(2, 0, 3),
-            'FT' => fake()->randomFloat(2, 0, 10),
-            'Total' => fake()->randomFloat(2, 0, 100),
+            'T1' => $this->termGrade(7),
+            'A1' => $this->termGrade(3),
+            'T2' => $this->termGrade(7),
+            'A2' => $this->termGrade(3),
+            'T3' => $this->termGrade(7),
+            'A3' => $this->termGrade(3),
+            'T4' => $this->termGrade(7),
+            'A4' => $this->termGrade(3),
+            'T5' => $this->termGrade(7),
+            'A5' => $this->termGrade(3),
+            'T6' => $this->termGrade(7),
+            'A6' => $this->termGrade(3),
+            'FT' => fake()->boolean(20) ? fake()->randomFloat(2, 0, 10) : 0,
         ];
+    }
+
+    private function termGrade(int $max): float
+    {
+        return fake()->randomFloat(2, 0, $max);
     }
 }

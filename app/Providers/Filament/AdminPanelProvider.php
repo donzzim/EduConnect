@@ -30,7 +30,6 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
-            ->topNavigation()
             ->colors([
                 'primary' => Color::Indigo,
             ])

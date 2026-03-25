@@ -17,27 +17,30 @@ class SubjectFactory extends Factory
      */
     public function definition(): array
     {
-        $subjects = [
-            "Português",
-            "Matemática",
-            "História",
-            "Geografia",
-            "Biologia",
-            "Física",
-            "Química",
-            "Filosofia",
-            "Sociologia",
-            "Inglês",
-            "Redação"
+        $catalog = [
+            ['name' => 'Língua Portuguesa', 'workload' => 120],
+            ['name' => 'Matemática', 'workload' => 120],
+            ['name' => 'História', 'workload' => 80],
+            ['name' => 'Geografia', 'workload' => 80],
+            ['name' => 'Ciências', 'workload' => 80],
+            ['name' => 'Biologia', 'workload' => 80],
+            ['name' => 'Física', 'workload' => 80],
+            ['name' => 'Química', 'workload' => 80],
+            ['name' => 'Filosofia', 'workload' => 40],
+            ['name' => 'Sociologia', 'workload' => 40],
+            ['name' => 'Arte', 'workload' => 40],
+            ['name' => 'Educação Física', 'workload' => 40],
+            ['name' => 'Língua Inglesa', 'workload' => 60],
+            ['name' => 'Redação', 'workload' => 60],
         ];
 
-        $subjectPicked = fake()->unique()->randomElement($subjects);
+        $subject = fake()->randomElement($catalog);
 
         return [
-            'name' => $subjectPicked,
-            'slug' => Str::slug($subjectPicked),
-            'description' => fake()->sentence(),
-            'workload' => fake()->randomElement([40, 60, 80, 120]),
+            'name' => $subject['name'],
+            'slug' => Str::slug($subject['name']),
+            'description' => fake()->sentence(10),
+            'workload' => $subject['workload'],
         ];
     }
 }
