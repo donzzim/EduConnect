@@ -100,9 +100,6 @@
                 <i class="fa-brands fa-python hover:text-blue-500 transition" title="Para Machine Learning"></i>
                 <i class="fa-brands fa-js hover:text-yellow-500 transition"></i>
             </div>
-            <div class="mt-8 text-slate-400 text-xs italic">
-                EduConnect &copy; 2026 - Inovação na Educação Pública e Privada.
-            </div>
         </div>
     </section>
 @endsection

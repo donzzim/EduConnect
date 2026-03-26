@@ -23,7 +23,6 @@ class UserResource extends Resource
     protected static string | UnitEnum | null $navigationGroup = 'Administração';
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::UserCircle;
-    protected static string | BackedEnum | null $activeNavigationIcon = Heroicon::OutlinedDocumentText;
 
     public static function getNavigationBadge(): ?string
     {
