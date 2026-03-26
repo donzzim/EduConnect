@@ -1,207 +1,119 @@
-@import '../../../../vendor/filament/filament/resources/css/theme.css';
+@import "../../../../vendor/filament/filament/resources/css/theme.css";
 
 @source '../../../../app/Filament/**/*';
-@source '../../../../resources/views/filament/**/*';
+@source '../../../../resource/views/Filament/**/*';
 
-body {
-    @apply bg-slate-950 text-slate-900 antialiased;
-    background-image:
-        radial-gradient(circle at top, rgba(59, 130, 246, 0.18), transparent 35%),
-        linear-gradient(180deg, #eff6ff 0%, #f8fafc 22%, #e2e8f0 100%);
-}
 
-.dark body {
-    background-image:
-        radial-gradient(circle at top, rgba(59, 130, 246, 0.22), transparent 30%),
-        linear-gradient(180deg, #020617 0%, #0f172a 40%, #020617 100%);
-}
-
-.fi-layout {
-    @apply relative;
-}
-
-.fi-layout::before {
-    content: '';
-    @apply pointer-events-none fixed inset-0 opacity-60;
-    background-image:
-        linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
-    background-size: 32px 32px;
-    mask-image: linear-gradient(180deg, rgba(255, 255, 255, 0.45), transparent 85%);
+.fi-body,
+.fi-layout,
+.fi-main {
+    background: linear-gradient(180deg, #020617 0%, #0f172a 100%);
 }
 
 .fi-sidebar {
-    @apply border-r border-white/10 bg-slate-950/95 text-slate-100 shadow-2xl backdrop-blur-xl;
-    background-image: linear-gradient(180deg, rgba(30, 41, 59, 0.98), rgba(2, 6, 23, 0.96));
-}
-
-.fi-sidebar-header,
-.fi-sidebar-nav,
-.fi-sidebar-footer {
-    @apply relative;
-}
-
-.fi-sidebar-header::after {
-    content: '';
-    @apply absolute inset-x-4 bottom-0 h-px bg-gradient-to-r from-transparent via-blue-400/35 to-transparent;
-}
-
-.fi-sidebar-group-label {
-    @apply text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-slate-500;
-}
-
-.fi-sidebar-item-btn,
-.fi-sidebar-group-btn {
-    @apply rounded-xl transition-all duration-200;
-}
-
-.fi-sidebar-item {
-    @apply text-slate-300;
-}
-
-.fi-sidebar-item:hover > .fi-sidebar-item-btn,
-.fi-sidebar-group-btn:hover {
-    @apply bg-white/6 text-white;
-}
-
-.fi-sidebar-item-active > .fi-sidebar-item-btn,
-.fi-sidebar-item.fi-sidebar-item-has-active-child-items > .fi-sidebar-item-btn {
-    @apply bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-400 text-white shadow-lg ring-1 ring-blue-300/30;
-}
-
-.fi-sidebar-item-active .fi-icon,
-.fi-sidebar-item.fi-sidebar-item-has-active-child-items .fi-icon {
-    @apply text-white;
+    background: linear-gradient(180deg, #020617 0%, #0f172a 100%);
+    border-right: 1px solid rgba(148, 163, 184, 0.12);
 }
 
 .fi-topbar {
-    @apply border-b border-slate-200/70 bg-white/78 shadow-sm backdrop-blur-xl dark:border-white/10 dark:bg-slate-950/65;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.12);
 }
 
-.fi-main {
-    @apply bg-transparent;
+.fi-section,
+.fi-widget,
+.fi-ta,
+.fi-in {
+    background: rgba(15, 23, 42, 0.78);
+    border: 1px solid rgba(148, 163, 184, 0.12);
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(2, 6, 23, 0.35);
 }
 
-.fi-page {
-    @apply gap-y-6;
+.fi-sidebar-item-button {
+    border-radius: 12px;
+    transition: all 0.2s ease;
 }
 
-.fi-header-heading,
-.fi-section-header-heading {
-    @apply text-slate-950 dark:text-white;
+.fi-sidebar-item-button:hover {
+    background: rgba(37, 99, 235, 0.14);
 }
 
-.fi-header-subheading,
-.fi-section-header-description {
-    @apply text-slate-500 dark:text-slate-400;
-}
-
-.fi-section {
-    @apply overflow-hidden rounded-3xl border border-white/70 bg-white/92 shadow-[0_24px_80px_-32px_rgba(15,23,42,0.35)] backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/75 dark:shadow-[0_30px_90px_-36px_rgba(2,6,23,0.9)];
-}
-
-.fi-section > .fi-section-header {
-    @apply border-b border-slate-200/80 bg-gradient-to-r from-blue-50/80 via-white to-cyan-50/70 dark:border-white/10 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800;
-}
-
-.fi-section-content,
-.fi-section-footer {
-    @apply dark:bg-transparent;
-}
-
-.fi-btn {
-    @apply rounded-xl font-semibold shadow-sm transition-all duration-200;
-}
-
-.fi-btn.fi-color {
-    @apply shadow-[0_18px_30px_-18px_rgba(59,130,246,0.85)];
-}
-
-.fi-btn.fi-outlined {
-    @apply border-slate-200/80 bg-white/70 dark:bg-slate-900/60;
-}
-
-.fi-btn:not(.fi-disabled):not([disabled]):hover {
-    @apply -translate-y-0.5;
-}
-
-.fi-input-wrp {
-    @apply rounded-2xl border border-slate-200/80 bg-white/80 shadow-[0_10px_30px_-20px_rgba(15,23,42,0.35)] ring-0 dark:border-white/10 dark:bg-slate-950/65;
-}
-
-.fi-input-wrp:not(.fi-disabled):focus-within {
-    @apply border-blue-400/70 shadow-[0_0_0_4px_rgba(59,130,246,0.12)];
+.fi-sidebar-item-active .fi-sidebar-item-button {
+    background: linear-gradient(135deg, #1d4ed8, #2563eb);
+    color: white;
+    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
 }
 
 .fi-input,
-.fi-input-wrp-label,
-.fi-fo-field-wrp-label {
-    @apply dark:text-slate-100;
+.fi-select-input,
+.fi-textarea,
+input,
+select,
+textarea {
+    background: rgba(15, 23, 42, 0.85);
+    border-color: rgba(148, 163, 184, 0.18);
+    color: #e2e8f0;
+    border-radius: 12px;
 }
 
-.fi-tabs:not(.fi-contained) {
-    @apply rounded-2xl border border-white/80 bg-white/80 p-1.5 shadow-[0_18px_45px_-30px_rgba(15,23,42,0.4)] dark:border-white/10 dark:bg-slate-900/70;
+.fi-input:focus,
+.fi-select-input:focus,
+.fi-textarea:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    outline: none;
 }
 
-.fi-tabs-item {
-    @apply rounded-xl;
+.fi-btn-color-primary {
+    background: linear-gradient(135deg, #1d4ed8, #2563eb);
+    border-color: transparent;
+    color: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.28);
 }
 
-.fi-tabs-item.fi-active {
-    @apply bg-gradient-to-r from-blue-600 to-cyan-400 shadow-[0_12px_30px_-16px_rgba(59,130,246,0.9)];
-}
-
-.fi-tabs-item.fi-active .fi-tabs-item-label,
-.fi-tabs-item.fi-active .fi-icon {
-    @apply text-white;
-}
-
-.fi-dropdown-panel,
-.fi-modal-window {
-    @apply rounded-3xl border border-white/80 bg-white/92 shadow-[0_28px_80px_-32px_rgba(15,23,42,0.45)] backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/90;
-}
-
-.fi-badge {
-    @apply rounded-full ring-1 ring-inset ring-white/40;
-}
-
-.fi-ta-content-ctn {
-    @apply overflow-hidden rounded-3xl border border-white/75 bg-white/92 shadow-[0_24px_80px_-32px_rgba(15,23,42,0.35)] dark:border-white/10 dark:bg-slate-900/75;
-}
-
-.fi-ta-content-ctn .fi-ta-content-header,
-.fi-ta-table > thead > tr,
-.fi-ta-table > tfoot {
-    @apply bg-slate-50/90 dark:bg-slate-950/60;
+.fi-btn-color-primary:hover {
+    filter: brightness(1.08);
 }
 
 .fi-ta-table {
-    @apply divide-slate-200/80 dark:divide-white/10;
+    border-radius: 16px;
+    overflow: hidden;
 }
 
-.fi-ta-table > tbody {
-    @apply divide-slate-200/70 dark:divide-white/6;
+.fi-ta-header-cell {
+    background: rgba(30, 41, 59, 0.9);
 }
 
-.fi-ta-content .fi-ta-record {
-    @apply transition-all duration-200;
+.fi-ta-row:hover {
+    background: rgba(37, 99, 235, 0.08);
 }
 
-.fi-ta-content .fi-ta-record.fi-clickable:hover {
-    @apply bg-blue-50/70 dark:bg-blue-500/8;
+.fi-modal-window {
+    background: #0f172a;
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    border-radius: 20px;
 }
 
-.fi-ta-content .fi-ta-record.fi-selected {
-    @apply bg-blue-50 dark:bg-blue-500/10;
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
 }
 
-.fi-pagination-item-btn,
-.fi-pagination-previous-btn,
-.fi-pagination-next-btn,
-.fi-pagination-records-per-page-select {
-    @apply rounded-xl border border-slate-200/80 bg-white/80 dark:border-white/10 dark:bg-slate-900/70;
+::-webkit-scrollbar-track {
+    background: #020617;
 }
 
-.fi-avatar {
-    @apply ring-2 ring-blue-400/25 ring-offset-2 ring-offset-white dark:ring-offset-slate-950;
+::-webkit-scrollbar-thumb {
+    background: #1e3a8a;
+    border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #2563eb;
 }
