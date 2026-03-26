@@ -31,6 +31,11 @@ class UsersTable
                 TextColumn::make('gender')
                     ->label('Sexo')
                     ->toggleable(isToggledHiddenByDefault: true)
+                    ->formatStateUsing(fn(string $state): string => match ($state) {
+                        "male" => 'Masculino',
+                        "female" => 'Feminino',
+                        "other" => 'Outro',
+                    })
                     ->searchable(),
                 TextColumn::make('enrollment')
                     ->label('Matrícula')
