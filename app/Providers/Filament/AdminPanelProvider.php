@@ -30,9 +30,14 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
-            // ->viteTheme('resources/css/filament/admin/theme.css')
+            ->viteTheme('resources/css/filament/admin/theme.css')
             ->colors([
-                'primary' => Color::Indigo,
+                'primary' => Color::Blue,
+            ])
+            ->navigationGroups([
+                NavigationGroup::make('Administração'),
+                NavigationGroup::make('Cadastros'),
+                NavigationGroup::make('Configurações'),
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
